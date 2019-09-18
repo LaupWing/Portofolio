@@ -23,7 +23,11 @@ export default {
   },
   methods:{
     scrollEvent(){
-      console.log(this.$el.scrollTop)
+      if(this.$el.scrollTop > 10){
+        this.$el.querySelector('header#Nav').classList.add('expand')
+      }else if(this.$el.scrollTop <10){
+        this.$el.querySelector('header#Nav').classList.remove('expand')
+      }
       document.querySelectorAll('section').forEach(section=>{
         
       })
@@ -42,6 +46,7 @@ export default {
 :root{
   --main-color: white;
   --second-color: black;
+  --container-width: 900px;
 }
 body{
   margin: 0;
@@ -57,7 +62,9 @@ section#Projects,
 section#Contact{
   width: 100vw;
   height: 100vh; 
-  /* max-width: 100%; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 a{
   text-decoration: none;
