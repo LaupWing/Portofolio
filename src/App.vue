@@ -23,7 +23,7 @@ export default {
   },
   methods:{
     scrollEvent(){
-      console.log(window.scrollY)
+      console.log(this.$el.scrollTop)
       document.querySelectorAll('section').forEach(section=>{
         
       })
