@@ -63,5 +63,21 @@ a{
   text-decoration: none;
   color: var(--second-color);
 }
-
+.trade-mark{
+  border-bottom: 1px solid var(--second-color);
+  position: relative;
+  background: var(--main-color);
+}
+.trade-mark::after{
+  content:'';
+  background: var(--second-color);
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translate(-50%,0);
+  z-index: -1;
+}
 </style>

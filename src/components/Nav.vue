@@ -1,19 +1,19 @@
 <template>
     <header id="Nav">
         <div class="logo">
-            <h1>Portofolio</h1>
+            <h1 class="trade-mark">Portofolio</h1>
         </div>
         <nav>
-            <li>
+            <li class="trade-mark">
                 <a href="">home</a>
             </li>
-            <li>
+            <li class="trade-mark">
                 <a href="">Projects</a>
             </li>
-            <li>
+            <li class="trade-mark">
                 <a href="">contact</a>
             </li>
-            <li>
+            <li class="trade-mark">
                 <a href="">resume</a>
             </li>
         </nav>
@@ -44,9 +44,6 @@ header#Nav nav{
 }
 header#Nav .logo h1{
     margin: 10px;
-    position: relative;
-    border-bottom: var(--second-color) solid 2px;
-    background: var(--main-color);
 }
 header#Nav nav li{
     list-style: none;
@@ -55,13 +52,10 @@ header#Nav nav li{
     letter-spacing: 1px;
     text-decoration: none;
     color: var(--second-color);
-    border-bottom: 1px solid var(--second-color);
-    position: relative;
-    background: var(--main-color);
 }
 header#Nav nav li::after,
 header#Nav .logo h1::after{
-    content:'';
+    /* content:'';
     background: var(--second-color);
     border-radius: 50%;
     width: 20px;
@@ -70,7 +64,7 @@ header#Nav .logo h1::after{
     bottom: -10px;
     left: 50%;
     transform: translate(-50%,0);
-    z-index: -1;
+    z-index: -1; */
 }
 
 </style>
