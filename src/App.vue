@@ -69,6 +69,7 @@ body{
   max-height: 100vh;
   overflow-y: overlay;
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 section#Home,
 section#Projects,

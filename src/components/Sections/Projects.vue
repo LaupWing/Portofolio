@@ -8,7 +8,11 @@
 
 <script>
 export default {
-    nameL: 'Projects'
+    name: 'Projects',
+    mounted(){
+        const heightNav = document.querySelector('header#Nav').offsetHeight
+        this.$el.querySelector('.title').style.top = `${heightNav}px`
+    }
 }
 </script>
 

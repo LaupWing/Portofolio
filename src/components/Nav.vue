@@ -10,7 +10,7 @@
                     :key="index"
                     :class="{'trade-mark' : item.toLowerCase() === section.toLowerCase()}"
                 >
-                    <a :href="'#'+item">{{item}}</a>
+                    <a @click="goTo(item)">{{item}}</a>
                 </li>
             </nav>
         </div>
@@ -24,6 +24,12 @@ export default {
     data(){
         return{
             liItems: ['Home', 'Projects', 'Contact', 'Resume']
+        }
+    },
+    methods:{
+        goTo(item){
+            const section = document.querySelector(`#${item}`) 
+            document.querySelector('#app').scrollTo(0, section.offsetTop)
         }
     }
 }
@@ -64,6 +70,7 @@ header#Nav nav li{
     letter-spacing: 1px;
     text-decoration: none;
     color: var(--second-color);
+    cursor: pointer;
 }
 
 
