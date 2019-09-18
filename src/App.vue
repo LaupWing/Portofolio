@@ -90,14 +90,15 @@ a{
 }
 .trade-mark::after{
   content:'';
-  background: var(--second-color);
-  border-radius: 50%;
   width: 20px;
-  height: 20px;
+  height: 10px;
+  background-color: var(--second-color);
+  border-bottom-left-radius: 110px;
+  border-bottom-right-radius: 110px;
   position: absolute;
+  border-top: 0;
   bottom: -10px;
   left: 50%;
   transform: translate(-50%,0);
-  z-index: -1;
 }
 </style>
