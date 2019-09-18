@@ -1,31 +1,67 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+  <div id="app" @scroll="scrollEvent">
+    <Nav/>
+    <Home/>
+    <Projects/>
+    <Contact/>
   </div>
 </template>
+<script>
+import Nav from '@/components/Nav'
+import Home from '@/components/Sections/Home'
+import Contact from '@/components/Sections/Contact'
+import Projects from '@/components/Sections/Projects'
+import debounce from 'debounce'
 
+export default {
+  name: 'App',
+  components:{
+    Nav,
+    Home,
+    Contact,
+    Projects
+  },
+  methods:{
+    scrollEvent(){
+      console.log(window.scrollY)
+      document.querySelectorAll('section').forEach(section=>{
+        
+      })
+    }
+  },
+  mounted(){
+    // window.addEventListener('scroll', debounce(this.scrollEvent,200))
+  }
+}
+</script>
 <style>
+
+*{
+  box-sizing: border-box;
+}
+:root{
+  --main-color: white;
+  --second-color: black;
+}
+body{
+  margin: 0;
+  padding: 0;
+}
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+  font-family: 'Manjari', sans-serif;
+  max-height: 100vh;
+  overflow-y: overlay;
 }
-#nav {
-  padding: 30px;
+section#Home,
+section#Projects,
+section#Contact{
+  width: 100vw;
+  height: 100vh; 
+  /* max-width: 100%; */
+}
+a{
+  text-decoration: none;
+  color: var(--second-color);
 }
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
 </style>
