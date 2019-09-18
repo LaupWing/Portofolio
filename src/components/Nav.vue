@@ -53,18 +53,6 @@ header#Nav nav li{
     text-decoration: none;
     color: var(--second-color);
 }
-header#Nav nav li::after,
-header#Nav .logo h1::after{
-    /* content:'';
-    background: var(--second-color);
-    border-radius: 50%;
-    width: 20px;
-    height: 20px;
-    position: absolute;
-    bottom: -10px;
-    left: 50%;
-    transform: translate(-50%,0);
-    z-index: -1; */
-}
+
 
 </style>
