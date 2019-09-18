@@ -5,17 +5,12 @@
                 <h1 class="trade-mark">Portofolio</h1>
             </div>
             <nav>
-                <li class="trade-mark">
-                    <a href="">home</a>
-                </li>
-                <li class="trade-mark">
-                    <a href="">Projects</a>
-                </li>
-                <li class="trade-mark">
-                    <a href="">contact</a>
-                </li>
-                <li class="trade-mark">
-                    <a href="">resume</a>
+                <li
+                    v-for="(item,index) in liItems"
+                    :key="index"
+                    :class="{'trade-mark' : item.toLowerCase() === section.toLowerCase()}"
+                >
+                    <a :href="'#'+item">{{item}}</a>
                 </li>
             </nav>
         </div>
@@ -24,7 +19,13 @@
 
 <script>
 export default {
-    name: 'Nav'
+    name: 'Nav',
+    props:['section'],
+    data(){
+        return{
+            liItems: ['Home', 'Projects', 'Contact', 'Resume']
+        }
+    }
 }
 </script>
 
@@ -41,6 +42,7 @@ header#Nav{
     padding: 0 20px;
     transition: .5s;
     height: 90px;
+    z-index: 1000;
 }
 header#Nav .navigation{
     width: 100%;

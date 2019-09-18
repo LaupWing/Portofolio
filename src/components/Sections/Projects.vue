@@ -1,6 +1,5 @@
 <template>
     <section id="Projects">
-
     </section>
 </template>
 

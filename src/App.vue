@@ -1,6 +1,8 @@
 <template>
   <div id="app" @scroll="scrollEvent">
-    <Nav/>
+    <Nav
+      :section="section"
+    />
     <Home/>
     <Projects/>
     <Contact/>
@@ -21,6 +23,11 @@ export default {
     Contact,
     Projects
   },
+  data(){
+    return{
+      section: 'Home'
+    }
+  },
   methods:{
     scrollEvent(){
       if(this.$el.scrollTop > 10){
@@ -29,7 +36,12 @@ export default {
         this.$el.querySelector('header#Nav').classList.remove('expand')
       }
       document.querySelectorAll('section').forEach(section=>{
-        
+        const navHeight = this.$el.querySelector('header#Nav').offsetHeight
+        const begin = this.$el.scrollTop > (section.offsetTop-navHeight)
+        const end = this.$el.scrollTop < (section.offsetTop + section.offsetHeight)-navHeight
+        if(begin && end){
+          this.section = section.id
+        }
       })
     }
   },
@@ -56,6 +68,7 @@ body{
   font-family: 'Manjari', sans-serif;
   max-height: 100vh;
   overflow-y: overlay;
+  scroll-behavior: smooth;
 }
 section#Home,
 section#Projects,
