@@ -45,9 +45,6 @@ export default {
       })
     }
   },
-  mounted(){
-    // window.addEventListener('scroll', debounce(this.scrollEvent,200))
-  }
 }
 </script>
 <style>

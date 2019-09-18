@@ -1,11 +1,18 @@
 <template>
     <section id="Home">
-        <router-view> 
-        </router-view>
+        <transition :name="transitionVal" mode="out-in">
+            <router-view> 
+            </router-view>
+        </transition>
         <nav>
-            <router-link :to="{name: 'Intro'}"></router-link>
-            <router-link :to="{name: 'Github'}"></router-link>
-            <a></a>
+            <router-link 
+                v-for="(item, index) in navigationItems" 
+                :key="index" 
+                event=""
+                @click.native.prevent="setNextUrl(index, item)"
+                :to="{name:item}"
+            >
+            </router-link>
             <a></a>
         </nav>
     </section>
@@ -13,7 +20,46 @@
 
 <script>
 export default {
-    name: 'Home'
+    name: 'Home',
+    data(){
+        return{
+            transitionVal: 'firstEnter',
+            nextIndex: 0,
+            currentIndex: 0,
+            navigationItems:['Intro', 'Github', 'Skills']
+        }
+    },
+    methods:{
+        setNextUrl(index, item){
+            const path = this.$router.options.routes
+                .find(route=>route.name===item).path 
+
+            this.nextIndex = index
+            console.log(this.nextIndex, this.currentIndex)
+            if(this.nextIndex === 0){
+                console.log(this.currentIndex)
+                this.currentIndex = index
+                this.transitionVal = ''
+                this.$router.push(path)
+            }
+            else if(this.currentIndex < this.nextIndex){
+                console.log(this.currentIndex)
+                this.currentIndex = index
+                this.transitionVal = 'higher'
+                this.$router.push(path)
+            }
+            else if(this.currentIndex > this.nextIndex){
+                console.log(this.currentIndex)
+                this.currentIndex = index
+                this.transitionVal = 'lower'
+                this.$router.push(path)
+            }
+            
+        }
+    },
+    created(){
+        this.prevRoute = this.$route.path
+    }
 }
 </script>
 
@@ -53,5 +99,35 @@ export default {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+.lower-enter-active{
+    animation: slideLeft 1s reverse;
+}
+.lower-leave-active{
+    animation: slideRight 1s forwards;
+}
+
+.higher-enter-active{
+    animation: slideRight 1s reverse;
+}
+.higher-leave-active{
+    animation: slideLeft 1s forwards;
+}
+@keyframes slideRight {
+    from{
+        transform: translate(0,0);
+    }
+    to{
+        transform: translate(100vw,0)
+    }
+}
+@keyframes slideLeft {
+    from{
+        transform: translate(0,0);
+    }
+    to{
+        transform: translate(-100vw,0);
+    }
 }
 </style>
