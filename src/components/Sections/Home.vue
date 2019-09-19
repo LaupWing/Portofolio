@@ -16,6 +16,7 @@
                 event=""
                 @click.native.prevent="setNextUrl(index, item)"
                 :to="{name:item}"
+                @mouseover="toggleShow(true)"
             >
                 <transition name="bounce">
                     <p v-if="show" class="showLink">{{item}}</p>
