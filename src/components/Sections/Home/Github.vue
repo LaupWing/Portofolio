@@ -9,7 +9,8 @@ export default {
     name: 'Github',
     data(){
         return{
-            commits: null
+            commits: null,
+            timespan: []
         }
     },
     methods:{
@@ -45,6 +46,20 @@ export default {
                     .then(res=>res.json())
                     .then(data=>data)
         },
+        timeline(){
+            const date = new Date()
+            const day = date.getDate()
+            const month = date.getMonth()+1
+            const year= date.getFullYear()
+            for(let i=0; i<10; i++){
+                this.timespan.push({
+                    day: day - i !== 0 ? day - i : i === 1 ? this.getLastDayOfMonth(month-1) : (this.getLastDayOfMonth(month-1) - i) + 1,
+                    year: month === 1 && day === 1 ? year-1 : year, // this formule isnt correct yet maybe in the future i will change it
+                    month: day - i > 0 ? month : month === 1 ? 12 : month -1  
+                })
+            }
+            console.log(this.timespan)
+        }
     },
     async created(){
         const repos = await this.getRepos()
@@ -61,7 +76,7 @@ export default {
             })
         })
         this.commits = commits.flat(Infinity)
-        this.getLastDayOfMonth(8)
+        this.timeline()
     }
 }
 </script>
