@@ -12,13 +12,7 @@ export default new Router({
     {
       path: '/',
       name: 'Intro',
-      component: Intro,
-      // children:[
-      //   {
-      //     path: '/intro',
-      //     component: Intro
-      //   }
-      // ]
+      component: Intro
     },
     {
       path: '/Github',

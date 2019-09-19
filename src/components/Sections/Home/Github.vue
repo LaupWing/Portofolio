@@ -5,12 +5,15 @@
 </template>
 
 <script>
+import db from '@/firebase/init'
 export default {
     name: 'Github',
     data(){
         return{
             commits: null,
-            timespan: []
+            timespan: [],
+            timespanWithCommits: [],
+            commitsForThisTimespan: 0
         }
     },
     methods:{
@@ -32,7 +35,12 @@ export default {
                             })
                             .slice(0,25)
                             .map(d=>d.name)
+                    })
+                    // .then(formatted=>{
 
+                    // })
+                    .catch(err=>{
+                        console.log(err)
                     })
         },
         getLastDayOfMonth(month){
@@ -58,7 +66,28 @@ export default {
                     month: day - i > 0 ? month : month === 1 ? 12 : month -1  
                 })
             }
-            console.log(this.timespan)
+            this.linkCommitsToDate()
+        },
+        linkCommitsToDate(){
+            this.timespanWithCommits = this.timespan.map(span=>{
+                const newObj = span
+                newObj.commits = this.commits.filter(commit=>{
+                    const date = new Date(commit.date)
+                    const day = date.getDate()
+                    const month = date.getMonth()+1
+                    const year = date.getFullYear()
+                    if(
+                        day === span.day &&
+                        month === span.month &&
+                        year === span.year
+                    ){
+                        return commit
+                    }
+                })
+                this.commitsForThisTimespan = this.commitsForThisTimespan + newObj.commits.length
+                return newObj
+            })
+            console.log(this.timespanWithCommits)
         }
     },
     async created(){
