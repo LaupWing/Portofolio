@@ -14,18 +14,23 @@ export default {
             keyframesId: ["bounceIn", "bounceInDown", "bounceInLeft", "bounceInRight", "bounceInUp", "fadeIn", "fadeInDown", "fadeInDownBig", "fadeInLeft", "fadeInLeftBig", "fadeInRight", "fadeInRightBig", "fadeInUp", "fadeInUpBig", "rotateIn", "rotateInDownLeft", "rotateInDownRight", "rotateInUpLeft", "rotateInUpRight", "slideInUp", "slideInDown", "slideInLeft", "slideInRight", "zoomIn", "zoomInDown", "zoomInLeft", "zoomInRight", "zoomInUp"]
         }
     },
+    methods:{
+        setKeyframes(){
+            this.$el.querySelectorAll('#Intro p').forEach(paragraph=>{
+                const randomNumber = Math.floor(Math.random()*(this.keyframesId.length-1))
+                paragraph.style.setProperty('--animation-name', this.keyframesId[randomNumber])
+            })
+        }
+    },
     mounted(){
-        this.$el.querySelectorAll('#Intro p').forEach(paragraph=>{
-            const randomNumber = Math.floor(Math.random()*(this.keyframesId.length-1))
-            paragraph.style.setProperty('--animation-name', this.keyframesId[randomNumber])
-        })
+        this.setKeyframes()
     }
 }
 </script>
 
 <style>
 #Intro{
-    padding-left: 30vw;
+    padding-left: 30%;
 }
 #Intro p{
     --animation-name: defaultAnim;

@@ -1,10 +1,15 @@
 <template>
     <section id="Home">
-        <transition :name="transitionVal" mode="out-in">
-            <router-view> 
-            </router-view>
-        </transition>
-        <nav>
+        <main>
+            <transition :name="transitionVal" mode="out-in">
+                <router-view> 
+                </router-view>
+            </transition>
+        </main>
+        <nav
+            @mouseover="toggleShow(true)"
+            @mouseout="toggleShow(false)"
+        >
             <router-link 
                 v-for="(item, index) in navigationItems" 
                 :key="index" 
@@ -12,6 +17,9 @@
                 @click.native.prevent="setNextUrl(index, item)"
                 :to="{name:item}"
             >
+                <transition name="bounce">
+                    <p v-if="show" class="showLink">{{item}}</p>
+                </transition>
             </router-link>
             <a></a>
         </nav>
@@ -26,7 +34,8 @@ export default {
             transitionVal: 'firstEnter',
             nextIndex: 0,
             currentIndex: 0,
-            navigationItems:['Intro', 'Github', 'Skills']
+            navigationItems:['Intro', 'Github', 'Skills'],
+            show: false
         }
     },
     methods:{
@@ -35,26 +44,25 @@ export default {
                 .find(route=>route.name===item).path 
 
             this.nextIndex = index
-            console.log(this.nextIndex, this.currentIndex)
             if(this.nextIndex === 0){
-                console.log(this.currentIndex)
                 this.currentIndex = index
                 this.transitionVal = ''
                 this.$router.push(path)
             }
             else if(this.currentIndex < this.nextIndex){
-                console.log(this.currentIndex)
                 this.currentIndex = index
                 this.transitionVal = 'higher'
                 this.$router.push(path)
             }
             else if(this.currentIndex > this.nextIndex){
-                console.log(this.currentIndex)
                 this.currentIndex = index
                 this.transitionVal = 'lower'
                 this.$router.push(path)
             }
             
+        },
+        toggleShow(state){
+            this.show = state
         }
     },
     created(){
@@ -69,6 +77,9 @@ export default {
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
+}
+#Home main{
+    max-width: var(--container-width);
 }
 #Home nav{
     position: absolute;
@@ -100,6 +111,11 @@ export default {
     left: 50%;
     transform: translate(-50%, -50%);
 }
+#Home .showLink{
+    pointer-events: none;
+    margin-top: -100%;
+
+}
 
 .lower-enter-active{
     animation: slideLeft 1s reverse;
@@ -130,4 +146,13 @@ export default {
         transform: translate(-100vw,0);
     }
 }
+
+
+.bounce-enter-active{
+    animation: bounceInUp 1s forwards;
+}
+.bounce-leave-active{
+    animation: bounceInUp 1s reverse;
+}
+
 </style>
