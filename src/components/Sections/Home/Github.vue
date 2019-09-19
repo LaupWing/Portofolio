@@ -1,6 +1,15 @@
 <template>
     <div id="Github">
         <h2 @click="checkData">Github</h2>
+        <div class="activity-container">
+            <div 
+                class="day"
+                v-for="(day, index) in commitsForThisTimespan"
+                :key="index"
+            >
+
+            </div>
+        </div>   
     </div>
 </template>
 
@@ -78,7 +87,7 @@ export default {
                             allCommits: this.commits,
                             createdAt: new Date()
                         })
-                        .then(()=>console.log('it has been set'))
+                        .then(()=>console.log('data has been set in the firebase database'))
                         .catch(err=>console.log(err))
                 })
                 .catch(err=>{
