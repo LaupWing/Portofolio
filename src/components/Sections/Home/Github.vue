@@ -54,7 +54,7 @@ export default {
             for(let i=0; i<10; i++){
                 this.timespan.push({
                     day: day - i !== 0 ? day - i : i === 1 ? this.getLastDayOfMonth(month-1) : (this.getLastDayOfMonth(month-1) - i) + 1,
-                    year: month === 1 && day === 1 ? year-1 : year, // this formule isnt correct yet maybe in the future i will change it
+                    year: month === 1 && day === 1 ? year-1 : year, // this formule isnt correct yet maybe in the future i will change it NOTE
                     month: day - i > 0 ? month : month === 1 ? 12 : month -1  
                 })
             }
