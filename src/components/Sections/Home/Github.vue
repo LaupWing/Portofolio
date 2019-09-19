@@ -139,20 +139,6 @@ export default {
     },
     async created(){
         this.getRepos()
-        // const repos = await this.getRepos()
-        // const commitsPromise = repos.map(r=>this.getCommits(r))
-        // const commitsRaw = await Promise.all(commitsPromise)
-        //         .then(values=>values)
-        // const commits = commitsRaw.map((raw,index)=>{
-        //     return raw.map(c=>{
-        //         return{
-        //             repo: repos[index],
-        //             message: c.commit.message,
-        //             date: c.commit.committer.date
-        //         }
-        //     })
-        // })
-        // this.commits = commits.flat(Infinity)
         this.timeline()
     }
 }
