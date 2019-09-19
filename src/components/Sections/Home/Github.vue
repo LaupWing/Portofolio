@@ -44,26 +44,23 @@ export default {
             return fetch(url)
                     .then(res=>res.json())
                     .then(data=>data)
-        }
+        },
     },
     async created(){
         const repos = await this.getRepos()
         const commitsPromise = repos.map(r=>this.getCommits(r))
-        const commits = await Promise.all(commitsPromise)
+        const commitsRaw = await Promise.all(commitsPromise)
                 .then(values=>values)
-        const reposCommits = repos.map((repo,index)=>{
-            return{
-                name: repo,
-                commits: commits[index]
-                    .map(c=>{
-                        return{
-                            message: c.commit.message,
-                            date: c.commit.committer.date
-                        }
-                    })
-            }
+        const commits = commitsRaw.map((raw,index)=>{
+            return raw.map(c=>{
+                return{
+                    repo: repos[index],
+                    message: c.commit.message,
+                    date: c.commit.committer.date
+                }
+            })
         })
-        this.commits = reposCommits
+        this.commits = commits.flat(Infinity)
         this.getLastDayOfMonth(8)
     }
 }
