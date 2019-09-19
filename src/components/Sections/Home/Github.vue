@@ -1,6 +1,6 @@
 <template>
     <div id="Github">
-        <h2>Github</h2>
+        <h2 @click="checkData">Github</h2>
     </div>
 </template>
 
@@ -13,7 +13,9 @@ export default {
             commits: null,
             timespan: [],
             timespanWithCommits: [],
-            commitsForThisTimespan: 0
+            commitsForThisTimespan: 0,
+            error:[],
+            commitsMethod: null
         }
     },
     methods:{
@@ -36,19 +38,65 @@ export default {
                             .slice(0,25)
                             .map(d=>d.name)
                     })
-                    // .then(formatted=>{
-
-                    // })
-                    .catch(err=>{
-                        console.log(err)
+                    .then(names=>{
+                        this.getAllCommits(names)
                     })
+                    .catch(err=>{
+                        this.getCommitsFirebase()
+                        this.error.push(err.message)
+                    })
+        },
+        checkData(){
+            console.log(this.commits)
         },
         getLastDayOfMonth(month){
             const date = new Date(2008, month + 1, 0)
             const day = date.getDate()
             return day
         },
-        getCommits(repo){
+        getAllCommits(names){
+            const commitsPromise = names.map(n=>this.getCommit(n))
+            Promise.all(commitsPromise)
+                .then(values=>values)
+                .then(commitsRaw=>{
+                    const commits = commitsRaw.map((raw,index)=>{
+                        return raw.map(c=>{
+                            return{
+                                repo: names[index],
+                                message: c.commit.message,
+                                date: c.commit.committer.date
+                            }
+                        })
+                    })
+                    this.commits = commits.flat(Infinity)
+                    this.commitsMethod = 'The data above is realtime received by the Github API'
+                    this.linkCommitsToDate()
+                    db
+                        .collection('mycommits')
+                        .doc('commits')
+                        .set({
+                            allCommits: this.commits,
+                            createdAt: new Date()
+                        })
+                        .then(()=>console.log('it has been set'))
+                        .catch(err=>console.log(err))
+                })
+                .catch(err=>{
+                    this.getCommitsFirebase()
+                    this.error.push(err.message)
+                })
+        },
+        getCommitsFirebase(){
+            db
+                .collection('mycommits')
+                .doc('commits')
+                .get()
+                .then(doc=>{
+                    this.commitsMethod = `The data is received by my own database from the date ${doc.data().createdAt}`
+                    this.commits = doc.data().allCommits
+                })
+        },
+        getCommit(repo){
             const url = `https://api.github.com/repos/LaupWing/${repo}/commits?per_page=500`
             return fetch(url)
                     .then(res=>res.json())
@@ -66,7 +114,6 @@ export default {
                     month: day - i > 0 ? month : month === 1 ? 12 : month -1  
                 })
             }
-            this.linkCommitsToDate()
         },
         linkCommitsToDate(){
             this.timespanWithCommits = this.timespan.map(span=>{
@@ -91,20 +138,21 @@ export default {
         }
     },
     async created(){
-        const repos = await this.getRepos()
-        const commitsPromise = repos.map(r=>this.getCommits(r))
-        const commitsRaw = await Promise.all(commitsPromise)
-                .then(values=>values)
-        const commits = commitsRaw.map((raw,index)=>{
-            return raw.map(c=>{
-                return{
-                    repo: repos[index],
-                    message: c.commit.message,
-                    date: c.commit.committer.date
-                }
-            })
-        })
-        this.commits = commits.flat(Infinity)
+        this.getRepos()
+        // const repos = await this.getRepos()
+        // const commitsPromise = repos.map(r=>this.getCommits(r))
+        // const commitsRaw = await Promise.all(commitsPromise)
+        //         .then(values=>values)
+        // const commits = commitsRaw.map((raw,index)=>{
+        //     return raw.map(c=>{
+        //         return{
+        //             repo: repos[index],
+        //             message: c.commit.message,
+        //             date: c.commit.committer.date
+        //         }
+        //     })
+        // })
+        // this.commits = commits.flat(Infinity)
         this.timeline()
     }
 }
