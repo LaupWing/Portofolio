@@ -10,7 +10,15 @@
                     transform: `translate(${(daySize*index)*2}px,0)`
                 }"
             >
+                <div class="commits">
+                    <div 
+                        class="commit"
+                        v-for="(commit, index) in day.commits"
+                        :key="index+'A'"
+                    >
 
+                    </div>
+                </div>
             </div>
         </div>   
     </div>
@@ -182,6 +190,17 @@ export default {
     background: orange;
     margin: 10px;
     transition: 1s;
+}
+#Github .day .commits{
+    margin-top: 100%;
+    display: flex;
+    flex-direction: column-reverse;
+}
+#Github .day .commit{
+    width: 20px;
+    height: 20px;
+    margin: 5px 0;
+    background: purple;
 }
 #Github .activity-container{
     display: flex;
