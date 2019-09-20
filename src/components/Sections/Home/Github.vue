@@ -4,7 +4,7 @@
         <div class="activity-container">
             <div 
                 class="day"
-                v-for="(day, index) in commitsForThisTimespan"
+                v-for="(day, index) in timespanWithCommits"
                 :key="index"
             >
 
@@ -154,5 +154,16 @@ export default {
 </script>
 
 <style>
-
+#Github .day{
+    width: 20px;
+    height: 20px;
+    background: orange;
+    margin: 10px;
+}
+#Github .activity-container{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+}
 </style>
