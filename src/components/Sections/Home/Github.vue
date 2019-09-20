@@ -164,10 +164,14 @@ export default {
                 return newObj
             })
             // Very bad practice this code below
+            // In order to change this we need to make a seperate vue file for the days
             setTimeout(()=>{
                 this.removeInlineStyles('.day')
-                this.$el.querySelector('.day').addEventListener('transitionend', this.removeInlineStyles('commit'))
             },1000)
+
+            setTimeout(()=>{
+                this.removeInlineStyles('.commit')
+            },2000)
         },
         removeInlineStyles(el){
             this.$el.querySelectorAll(el).forEach(day=>{
