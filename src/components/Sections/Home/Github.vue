@@ -51,6 +51,8 @@ export default {
                         this.getAllCommits(names)
                     })
                     .catch(err=>{
+                        // Limit kan hier bereikt worden vandaar dat er hier data uit te firebase gehaald word
+                        // Limit van github api is 60 calls per uur
                         this.getCommitsFirebase()
                         this.error.push(err.message)
                     })
@@ -91,6 +93,8 @@ export default {
                         .catch(err=>console.log(err))
                 })
                 .catch(err=>{
+                    // Limit kan hier bereikt worden vandaar dat er hier data uit te firebase gehaald word
+                    // Limit van github api is 60 calls per uur
                     this.getCommitsFirebase()
                     this.error.push(err.message)
                 })
