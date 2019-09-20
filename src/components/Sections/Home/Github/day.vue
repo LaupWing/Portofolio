@@ -23,7 +23,7 @@
 <script>
 export default {
     name: 'day',
-    props:['daySize', 'day', 'iets'],
+    props:['daySize', 'day'],
     data(){
         return{
 
