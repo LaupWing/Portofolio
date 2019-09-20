@@ -6,6 +6,9 @@
                 class="day"
                 v-for="(day, index) in timespanWithCommits"
                 :key="index"
+                :style="{
+                    transform: `translate(${(daySize*index)*2}px,0)`
+                }"
             >
 
             </div>
@@ -24,7 +27,8 @@ export default {
             timespanWithCommits: [],
             commitsForThisTimespan: 0,
             error:[],
-            commitsMethod: null
+            commitsMethod: null,
+            daySize: 20
         }
     },
     methods:{
@@ -107,6 +111,7 @@ export default {
                 .then(doc=>{
                     this.commitsMethod = `The data is received by my own database from the date ${doc.data().createdAt}`
                     this.commits = doc.data().allCommits
+                    this.linkCommitsToDate()
                 })
         },
         getCommit(repo){
@@ -147,27 +152,41 @@ export default {
                 this.commitsForThisTimespan = this.commitsForThisTimespan + newObj.commits.length
                 return newObj
             })
-            console.log(this.timespanWithCommits)
+            // Very bad practice this code below
+            setTimeout(()=>{
+                this.removeInlineStyles()
+            },1000)
+        },
+        removeInlineStyles(){
+            this.$el.querySelectorAll('.day').forEach(day=>{
+                day.style.removeProperty('transform')
+            }) 
         }
     },
     async created(){
         this.getRepos()
         this.timeline()
+    },
+    mounted(){
     }
 }
 </script>
 
 <style>
+#Github{
+    /* --day-size: 20px */
+}
 #Github .day{
     width: 20px;
     height: 20px;
     background: orange;
     margin: 10px;
+    transition: 1s;
 }
 #Github .activity-container{
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    flex-wrap: wrap;
+    flex-direction: row-reverse;
 }
 </style>
