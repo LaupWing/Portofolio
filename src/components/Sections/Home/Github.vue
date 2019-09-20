@@ -15,6 +15,9 @@
                         class="commit"
                         v-for="(commit, index) in day.commits"
                         :key="index+'A'"
+                        :style="{
+                            transform: `translate(0,-${(daySize*index)+((daySize/2)*index)}px)`
+                        }"      
                     >
 
                     </div>
@@ -162,11 +165,12 @@ export default {
             })
             // Very bad practice this code below
             setTimeout(()=>{
-                this.removeInlineStyles()
+                this.removeInlineStyles('.day')
+                this.$el.querySelector('.day').addEventListener('transitionend', this.removeInlineStyles('commit'))
             },1000)
         },
-        removeInlineStyles(){
-            this.$el.querySelectorAll('.day').forEach(day=>{
+        removeInlineStyles(el){
+            this.$el.querySelectorAll(el).forEach(day=>{
                 day.style.removeProperty('transform')
             }) 
         }
@@ -194,13 +198,14 @@ export default {
 #Github .day .commits{
     margin-top: 100%;
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
 }
 #Github .day .commit{
     width: 20px;
     height: 20px;
     margin: 5px 0;
     background: purple;
+    transition: 1s;
 }
 #Github .activity-container{
     display: flex;
