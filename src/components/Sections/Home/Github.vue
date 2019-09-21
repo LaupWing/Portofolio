@@ -2,15 +2,14 @@
     <div id="Github">
         <h2 @click="checkData">Github</h2>
         <div class="activity-container">
-            <div 
-                class="day"
+            <Day
                 v-for="(day, index) in timespanWithCommits"
                 :key="index"
-                :style="{
-                    transform: `translate(${(daySize*index)*2}px,0)`
-                }"
-            >
-                <div class="commits">
+                :day="day"
+                :daySize="daySize"
+                :index="index"
+            />
+                <!-- <div class="commits">
                     <div 
                         class="commit"
                         v-for="(commit, index) in day.commits"
@@ -22,15 +21,19 @@
 
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>   
     </div>
 </template>
 
 <script>
+import Day from '@/components/Sections/Home/Github/Day'
 import db from '@/firebase/init'
 export default {
     name: 'Github',
+    components:{
+        Day
+    },
     data(){
         return{
             commits: null,
@@ -165,19 +168,19 @@ export default {
             })
             // Very bad practice this code below
             // In order to change this we need to make a seperate vue file for the days
-            setTimeout(()=>{
-                this.removeInlineStyles('.day')
-            },1000)
+            // setTimeout(()=>{
+            //     this.removeInlineStyles('.day')
+            // },1000)
 
-            setTimeout(()=>{
-                this.removeInlineStyles('.commit')
-            },2000)
+            // setTimeout(()=>{
+            //     this.removeInlineStyles('.commit')
+            // },2000)
         },
-        removeInlineStyles(el){
-            this.$el.querySelectorAll(el).forEach(day=>{
-                day.style.removeProperty('transform')
-            }) 
-        }
+        // removeInlineStyles(el){
+        //     this.$el.querySelectorAll(el).forEach(day=>{
+        //         day.style.removeProperty('transform')
+        //     }) 
+        // }
     },
     async created(){
         this.getRepos()
@@ -192,29 +195,14 @@ export default {
 #Github{
     /* --day-size: 20px */
 }
-#Github .day{
-    width: 20px;
-    height: 20px;
-    background: orange;
-    margin: 10px;
-    transition: 1s;
+#Github h2{
+    transition: 2s;
 }
-#Github .day .commits{
-    margin-top: 100%;
-    display: flex;
-    flex-direction: column;
-}
-#Github .day .commit{
-    width: 20px;
-    height: 20px;
-    margin: 5px 0;
-    background: purple;
-    transition: 1s;
-}
+
 #Github .activity-container{
     display: flex;
     justify-content: flex-start;
-    align-items: center;
+    align-items: flex-start;
     flex-direction: row-reverse;
 }
 </style>
