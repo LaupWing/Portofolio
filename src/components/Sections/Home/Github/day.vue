@@ -29,6 +29,7 @@
                 <div v-if="tooltip === commit" class="tooltip-commit">
                     <h2>{{commit.repo}}</h2>
                     <p>{{commit.message}}</p>
+                    <p class="time">{{formatDate(commit.date)}}</p>
                 </div>
             </div>
         </div>
@@ -60,6 +61,12 @@ export default {
             }else{
                 this.tooltip = null
             }
+        },
+        formatDate(date){
+            const formatDate = new Date(date)
+            const hours = formatDate.getHours()
+            const minutes = formatDate.getMinutes()
+            return `${hours}:${minutes}`
         }
     },
     mounted(){
@@ -123,6 +130,9 @@ export default {
     margin: 5px;
     text-align: center;
     white-space: nowrap;
+}
+#Github .day-container .tooltip-commit p.time{
+    font-style: italic;
 }
 #Github .day-container .commits{
     margin-top: 10px;
