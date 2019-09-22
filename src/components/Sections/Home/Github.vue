@@ -1,6 +1,9 @@
 <template>
     <div id="Github">
-        <h2 @click="checkData">Github</h2>
+        <h2 @click="checkData">Github Activity Chart</h2>
+        <p class="info">
+            <i class="fas fa-exclamation-circle"></i>{{commitsMethod}}
+        </p>
         <div class="activity-container">
             <Day
                 v-for="(day, index) in timespanWithCommits"
@@ -9,19 +12,6 @@
                 :daySize="daySize"
                 :index="index"
             />
-                <!-- <div class="commits">
-                    <div 
-                        class="commit"
-                        v-for="(commit, index) in day.commits"
-                        :key="index+'A'"
-                        :style="{
-                            transform: `translate(0,-${(daySize*index)+((daySize/2)*index)}px)`
-                        }"      
-                    >
-
-                    </div>
-                </div>
-            </div> -->
         </div>   
     </div>
 </template>
@@ -98,7 +88,7 @@ export default {
                         })
                     })
                     this.commits = commits.flat(Infinity)
-                    this.commitsMethod = 'The data above is realtime received by the Github API'
+                    this.commitsMethod = 'The data above is just now received by the Github API from mine github account'
                     this.linkCommitsToDate()
                     db
                         .collection('mycommits')
@@ -194,9 +184,29 @@ export default {
 <style>
 #Github{
     /* --day-size: 20px */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 #Github h2{
     transition: 2s;
+    margin: 5px;
+}
+
+#Github .info{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: .6em;
+    background: green;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+}
+
+#Github .info i{
+    font-size: 1.5em;
+    margin: 0s 5px;
 }
 
 #Github .activity-container{
