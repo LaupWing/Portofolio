@@ -28,32 +28,32 @@ export default {
                 {
                     link: null,
                     github: null,
-                    img: null,
-                    nameProject: null,
+                    img: 'skills',
+                    nameProject: 'Skills website',
                     description: null,
                     skills: ['vue']
                 },
                 {
                     link: null,
                     github: null,
-                    img: null,
-                    nameProject: null,
+                    img: 'tosti',
+                    nameProject: 'Tosti boodschappenlijst',
                     description: null,
                     skills: ['vue']
                 },
                 {
                     link: null,
                     github: null,
-                    img: null,
-                    nameProject: null,
+                    img: 'sphere',
+                    nameProject: 'Sphere construction website',
                     description: null,
                     skills: ['vue']
                 },
                 {
                     link: null,
-                    github: null,
-                    img: null,
-                    nameProject: null,
+                    github: 'Jones Webshop',
+                    img: 'jones',
+                    nameProject: 'Jones Webshop',
                     description: null,
                     skills: ['vue']
                 }
@@ -90,6 +90,6 @@ export default {
     align-items: flex-start;
     justify-content: flex-start;
     overflow-x: auto;
-    padding: 10px;
+    padding-bottom: 20px;
 }
 </style>
