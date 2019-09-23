@@ -11,7 +11,7 @@
         >
         <div v-if="tooltip === 'day'" class="tooltip-day">
             <h2>{{day.year}}</h2>
-            <p>{{monthNames[day.month-1]}}{{day.day}}</p>
+            <p>{{monthNames[day.month-1]}} {{day.day}}</p>
         </div>
         </div>
         <div class="commits">
