@@ -21,7 +21,6 @@ import Home from '@/components/Sections/Home'
 import Contact from '@/components/Sections/Contact'
 import Projects from '@/components/Sections/Projects'
 import ProjectOverlay from '@/components/ProjectOverlay'
-import debounce from 'debounce'
 
 export default {
   name: 'App',

@@ -28,8 +28,8 @@ export default {
         return{
             projects:[
                 {
-                    link: null,
-                    github: null,
+                    link: 'https://skills-c5bfa.firebaseapp.com/home',
+                    github: 'https://github.com/LaupWing/Skills',
                     img: 'skills',
                     nameProject: 'Skills website',
                     description: 'A website that i made where you can monitor your skills. The skills will be monitored by the amount of projects you have done. You can add skills and projects in this website. These thing will be saved in the firebase database. ',
@@ -44,8 +44,8 @@ export default {
                     skills: ['node']
                 },
                 {
-                    link: null,
-                    github: null,
+                    link: 'https://clever-heisenberg-90febc.netlify.com',
+                    github: 'https://github.com/LaupWing/Css-Practice-Construction-website',
                     img: 'sphere',
                     nameProject: 'Sphere construction website',
                     description: 'One of my earliest website. This website serves as a practice for css.',
@@ -69,7 +69,7 @@ export default {
                 },
                 {
                     link: null,
-                    github: 'Spotify Game',
+                    github: 'https://github.com/LaupWing/Daily-Planner',
                     img: 'dailyPlanner',
                     nameProject: 'Daily Planner',
                     description: 'A passion project. My own website where i can plan my day in. This project is still under construction',
