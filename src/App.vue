@@ -4,8 +4,15 @@
       :section="section"
     />
     <Home/>
-    <Projects/>
+    <Projects
+        v-on:openProjectOverlay="openProjectOverlay"
+    />
     <Contact/>
+    <ProjectOverlay
+        v-if="projectOverlay"
+        :project="projectOverlay"
+        v-on:close="openProjectOverlay"
+    />
   </div>
 </template>
 <script>
@@ -13,6 +20,7 @@ import Nav from '@/components/Nav'
 import Home from '@/components/Sections/Home'
 import Contact from '@/components/Sections/Contact'
 import Projects from '@/components/Sections/Projects'
+import ProjectOverlay from '@/components/ProjectOverlay'
 import debounce from 'debounce'
 
 export default {
@@ -21,11 +29,13 @@ export default {
     Nav,
     Home,
     Contact,
-    Projects
+    Projects,
+    ProjectOverlay
   },
   data(){
     return{
-      section: 'Home'
+      section: 'Home',
+      projectOverlay: null
     }
   },
   methods:{
@@ -43,6 +53,13 @@ export default {
           this.section = section.id
         }
       })
+    },
+    openProjectOverlay(project){
+        if(project){
+            this.projectOverlay = project
+        }else{
+            this.projectOverlay = null
+        }
     }
   },
 }

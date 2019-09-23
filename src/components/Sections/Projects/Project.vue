@@ -2,9 +2,10 @@
     <div class="project-card">
         <div class="img-container">
             <div class="see-more">
+                <p class="info">These links will open in a new tab</p>
                 <p v-if="!github && !link">No link and github available</p>
-                <i v-if="github" class="fab fa-github"></i>
-                <i v-if="link" class="fas fa-external-link-alt"></i>
+                <i v-if="github" @click="openInNewTab(github)" class="fab fa-github"></i>
+                <i v-if="link" @click="openInNewTab(link)" class="fas fa-external-link-alt"></i>
             </div>
             <img :src="getImgUrl(img)" alt="">
         </div>
@@ -22,9 +23,12 @@
                 </p>
             </div>
         </div>
-        <div class="popup">
+        <div 
+            class="popup"
+            :class="{'disabled':!link, 'active':link}"
+            @click="openProjectOverlay"
+        >
             <p>watch iframe <i class="far fa-eye"></i></p>
-            
         </div>
     </div>
 </template>
@@ -32,7 +36,7 @@
 <script>
 export default {
     name: 'Project',
-    props:['github', 'link', 'description', 'skills', 'nameProject', 'img'],
+    props:['github', 'link', 'description', 'skills', 'nameProject', 'img','project'],
     data(){
         return{
             name: 'Project',
@@ -70,6 +74,14 @@ export default {
                 color: findColor.color,
                 borderColor: findColor.color
             }
+        },
+        openInNewTab(url){
+            const win = window.open(url, '_blank');
+            win.focus();
+        },
+        openProjectOverlay(){
+            if(!this.link)  return
+            this.$emit('openProjectOverlay', this.project)   
         }
     }
 }
@@ -114,6 +126,17 @@ export default {
     justify-content: center;
     align-items: center;
 }
+.project-card .see-more p.info{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-size: .8em;
+    color: rgba(0,0,0,.4);
+    margin: 0;
+    text-align: center;
+    padding: 5px 0;
+}
 .project-card .see-more p{
     font-size: 1em;
 }
@@ -144,6 +167,16 @@ export default {
     text-align: center;
     color: black;
     border-top: rgba(0,0,0,.2) solid 1px; 
+    transition: .25s;
+}
+.project-card .popup.disabled{
+    background: rgba(0,0,0,.2);
+    color: rgba(0,0,0,.2);
+}
+.project-card .popup.active:hover{
+    background: black;
+    color: white;
+    cursor: pointer;
 }
 .project-card .popup p{
     margin: 0;

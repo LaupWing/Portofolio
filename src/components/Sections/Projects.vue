@@ -7,12 +7,14 @@
             <Project
                 v-for="(project,index) in projects"
                 :key="index"
+                :project="project"
                 :link="project.link"
                 :github="project.github"
                 :img="project.img"
                 :nameProject="project.nameProject"
                 :description="project.description"
                 :skills="project.skills"
+                v-on:openProjectOverlay="openProjectOverlay"
             />
         </main>
     </section>
@@ -34,8 +36,8 @@ export default {
                     skills: ['vue', 'firebase']
                 },
                 {
-                    link: null,
-                    github: null,
+                    link: 'https://boodschappenlijst-app.herokuapp.com/',
+                    github: 'https://github.com/LaupWing/TostiBoodschappenlijst',
                     img: 'tosti',
                     nameProject: 'Tosti boodschappenlijst',
                     description: 'A school project. This website is made for school with as goal 2 things in mind. 1 the user can make a sandwhich which adds te components to the shopping list and 2 this website needs to work without javascript. (serverside rendering)',
@@ -50,7 +52,7 @@ export default {
                     skills: ['css']
                 },
                 {
-                    link: null,
+                    link: 'https://hopeful-murdock-d6fbfb.netlify.com',
                     github: 'Jones Webshop',
                     img: 'jones',
                     nameProject: 'Jones Webshop',
@@ -58,8 +60,8 @@ export default {
                     skills: ['css']
                 },
                 {
-                    link: null,
-                    github: 'Spotify Game',
+                    link: 'https://spotifygame.herokuapp.com/',
+                    github: 'https://github.com/LaupWing/Spotify-API',
                     img: 'spotify',
                     nameProject: 'Spotify Game',
                     description: 'A school project. The main goal of this project was to use a api and make something cool with the receiving data. I chose for the spotify api and make a song guessing game',
@@ -78,6 +80,11 @@ export default {
     },
     components:{
         Project
+    },
+    methods:{
+        openProjectOverlay(project){
+            this.$emit('openProjectOverlay',project)
+        }
     },
     mounted(){
         const heightNav = document.querySelector('header#Nav').offsetHeight
