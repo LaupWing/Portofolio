@@ -1,6 +1,13 @@
 <template>
     <div class="project-card">
-        <img :src="getImgUrl(img)" alt="">
+        <div class="img-container">
+            <div class="see-more">
+                <p v-if="!github && !link">No link and github available</p>
+                <i v-if="github" class="fab fa-github"></i>
+                <i v-if="link" class="fas fa-external-link-alt"></i>
+            </div>
+            <img :src="getImgUrl(img)" alt="">
+        </div>
         <div class="info">
             <h3>{{nameProject}}</h3>
             <p class="description">{{description}}</p>
@@ -16,7 +23,8 @@
             </div>
         </div>
         <div class="popup">
-            <i class="far fa-eye"></i>
+            <p>watch iframe <i class="far fa-eye"></i></p>
+            
         </div>
     </div>
 </template>
@@ -78,15 +86,49 @@ export default {
     display: flex;
     flex-direction: column;
     position: relative;
+    overflow: hidden;
 }
 .project-card h3{
     margin: 0;
     font-size: 1.2em;
     padding: 10px;
 }
-.project-card img{
+.project-card .img-container{
     width: 100%;
     height: 40%;
+    position: relative;
+}
+.project-card .img-container:hover .see-more{
+    transform: translate(0,0);
+}
+.project-card .see-more{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translate(0,-100%);
+    transition: .5s;
+    background: rgba(255,2552,255,.95);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.project-card .see-more p{
+    font-size: 1em;
+}
+.project-card .see-more i{
+    font-size: 2em;
+    margin: 0 20px;
+    cursor: pointer;
+    /* transition: .5s; */
+}
+.project-card .see-more i:hover{
+    color: orange;
+}
+.project-card img{
+    width: 100%;
+    height: 100%;
 }
 .project-card p.description{
     padding: 10px;
@@ -100,8 +142,11 @@ export default {
     width: 100%;
     padding: 10px;
     text-align: center;
-    background: rgba(0,0,0,.2);
-    color: white; 
+    color: black;
+    border-top: rgba(0,0,0,.2) solid 1px; 
+}
+.project-card .popup p{
+    margin: 0;
 }
 .project-card .skills{
     display: flex;
