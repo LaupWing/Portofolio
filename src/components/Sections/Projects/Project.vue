@@ -6,6 +6,9 @@
             <p>{{description}}</p>
             <div class="skills"></div>
         </div>
+        <div class="popup">
+            <i class="far fa-eye"></i>
+        </div>
     </div>
 </template>
 
@@ -36,6 +39,7 @@ export default {
     flex: 0 0 auto;
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 .project-card h3{
     margin: 0;
@@ -45,5 +49,14 @@ export default {
 .project-card img{
     width: 100%;
     height: 40%;
+}
+.project-card .popup{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    background: rgba(0,0,0,.2);
+    color: white; 
 }
 </style>
