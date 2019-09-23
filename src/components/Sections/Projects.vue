@@ -30,33 +30,49 @@ export default {
                     github: null,
                     img: 'skills',
                     nameProject: 'Skills website',
-                    description: null,
-                    skills: ['vue']
+                    description: 'A website that i made where you can monitor your skills. The skills will be monitored by the amount of projects you have done. You can add skills and projects in this website. These thing will be saved in the firebase database. ',
+                    skills: ['vue', 'firebase']
                 },
                 {
                     link: null,
                     github: null,
                     img: 'tosti',
                     nameProject: 'Tosti boodschappenlijst',
-                    description: null,
-                    skills: ['vue']
+                    description: 'A school project. This website is made for school with as goal 2 things in mind. 1 the user can make a sandwhich which adds te components to the shopping list and 2 this website needs to work without javascript. (serverside rendering)',
+                    skills: ['node']
                 },
                 {
                     link: null,
                     github: null,
                     img: 'sphere',
                     nameProject: 'Sphere construction website',
-                    description: null,
-                    skills: ['vue']
+                    description: 'One of my earliest website. This website serves as a practice for css.',
+                    skills: ['css']
                 },
                 {
                     link: null,
                     github: 'Jones Webshop',
                     img: 'jones',
                     nameProject: 'Jones Webshop',
-                    description: null,
-                    skills: ['vue']
-                }
+                    description: 'One of my earliest website. This website serves as a practice for css.',
+                    skills: ['css']
+                },
+                {
+                    link: null,
+                    github: 'Spotify Game',
+                    img: 'spotify',
+                    nameProject: 'Spotify Game',
+                    description: 'A school project. The main goal of this project was to use a api and make something cool with the receiving data. I chose for the spotify api and make a song guessing game',
+                    skills: ['node', 'socket']
+                },
+                {
+                    link: null,
+                    github: 'Spotify Game',
+                    img: 'dailyPlanner',
+                    nameProject: 'Daily Planner',
+                    description: 'A passion project. My own website where i can plan my day in. This project is still under construction',
+                    skills: ['firebase', 'vue']
+                },
             ]
         }
     },
@@ -95,7 +111,7 @@ export default {
 
 /* width */
 #Projects main.project-container::-webkit-scrollbar {
-    width: 5px;
+    width: 10px;
     border-radius: 20px;
 }
 
@@ -108,13 +124,13 @@ export default {
  
 /* Handle */
 #Projects main.project-container::-webkit-scrollbar-thumb {
-    background: #888; 
+    background: rgba(0,0,0,.1); 
     border-radius: 20px;
     width: 5px;
 }
 
 /* Handle on hover */
 #Projects main.project-container::-webkit-scrollbar-thumb:hover {
-    background: #555; 
+    background: rgba(0,0,0,.2); 
 }
 </style>

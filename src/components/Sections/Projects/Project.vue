@@ -3,8 +3,17 @@
         <img :src="getImgUrl(img)" alt="">
         <div class="info">
             <h3>{{nameProject}}</h3>
-            <p>{{description}}</p>
-            <div class="skills"></div>
+            <p class="description">{{description}}</p>
+            <div class="skills">
+                <p 
+                    class="skill"
+                    v-for="(skill,index) in skills"
+                    :key="index"
+                    :style="setStyle(skill)"
+                >
+                    {{skill}}
+                </p>
+            </div>
         </div>
         <div class="popup">
             <i class="far fa-eye"></i>
@@ -18,12 +27,41 @@ export default {
     props:['github', 'link', 'description', 'skills', 'nameProject', 'img'],
     data(){
         return{
-            name: 'Project'
+            name: 'Project',
+            skillColors: [
+                {
+                    skill: 'vue',
+                    color: '#4BB583'
+                },
+                {
+                    skill: 'node',
+                    color: '#87C000'
+                },
+                {
+                    skill: 'firebase',
+                    color: '#F8C429'
+                },
+                {
+                    skill: 'css',
+                    color: '#2965F1'
+                },
+                {
+                    skill:'socket',
+                    color: '#010101'
+                }
+            ]
         }
     },
     methods:{
         getImgUrl(pic) {
             return require('../../../assets/projects/'+pic+'.png')
+        },
+        setStyle(skill){
+            const findColor = this.skillColors.find(sk=>sk.skill===skill)
+            return {
+                color: findColor.color,
+                borderColor: findColor.color
+            }
         }
     }
 }
@@ -43,12 +81,18 @@ export default {
 }
 .project-card h3{
     margin: 0;
-    font-size: 1em;
+    font-size: 1.2em;
     padding: 10px;
 }
 .project-card img{
     width: 100%;
     height: 40%;
+}
+.project-card p.description{
+    padding: 10px;
+    font-size: .8em;
+    padding-top: 0;
+    margin: 0;
 }
 .project-card .popup{
     position: absolute;
@@ -58,5 +102,21 @@ export default {
     text-align: center;
     background: rgba(0,0,0,.2);
     color: white; 
+}
+.project-card .skills{
+    display: flex;
+    padding: 10px;
+    padding-top: 0;
+}
+.project-card p.skill{
+    font-weight: bold;
+    font-size: .8em;
+    border-width: 2px;
+    border-style: solid;
+    text-transform: uppercase;
+    display: inline-block;
+    padding: 5px 7px;
+    border-radius: 5px;
+    margin: 5px;
 }
 </style>
