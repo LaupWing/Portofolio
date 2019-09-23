@@ -81,6 +81,11 @@ a{
   text-decoration: none;
   color: var(--second-color);
 }
+main{
+    max-width: var(--container-width);
+    margin: 0 auto; 
+}
+
 .trade-mark{
   border-bottom: 1px solid var(--second-color);
   position: relative;
