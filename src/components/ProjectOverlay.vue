@@ -46,10 +46,11 @@
 import getSkillColor from '@/helpers/skillColors'
 export default {
     name: 'ProjectOverlay',
-    props:['project'],
+    props:['projectOverlay'],
     data(){
         return{
-
+            project: this.projectOverlay.project,
+            pos: this.projectOverlay.pos
         }
     },
     methods:{
@@ -70,7 +71,15 @@ export default {
             }
         },
     },
-    created(){
+    mounted(){
+        this.$el.style.top = `${this.pos.y}px`
+        this.$el.style.left = `${this.pos.x}px`
+        this.$el.style.transform = 'scale(0)'
+        setTimeout(()=>{
+            this.$el.style.removeProperty('left')
+            this.$el.style.removeProperty('top')
+            this.$el.style.removeProperty('transform')
+        },100)
     }
 }
 </script>
@@ -87,6 +96,8 @@ export default {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    transition: 1s;
+    transform-origin: 0 0;
 }
 #Project-Overlay i.fa-times-circle{
     position: absolute;

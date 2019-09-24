@@ -28,7 +28,7 @@
             :class="{'disabled':!project.link, 'active':project.link}"
             @click="openProjectOverlay"
         >
-            <p>watch iframe <i class="far fa-eye"></i></p>
+            <p>watch iframe and see more <i class="far fa-eye"></i></p>
         </div>
     </div>
 </template>
@@ -81,7 +81,7 @@ export default {
         },
         openProjectOverlay(){
             if(!this.project.link)  return
-            this.$emit('openProjectOverlay', this.project)   
+            this.$emit('openProjectOverlay', this.project, {x:event.x, y:event.y})   
         }
     }
 }
@@ -180,6 +180,12 @@ export default {
 }
 .project-card .popup p{
     margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.project-card .popup p i{
+    margin-left: 5px;
 }
 .project-card .skills{
     display: flex;

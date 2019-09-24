@@ -92,8 +92,8 @@ export default {
         Project
     },
     methods:{
-        openProjectOverlay(project){
-            this.$emit('openProjectOverlay',project)
+        openProjectOverlay(project,pos){
+            this.$emit('openProjectOverlay',project,pos)
         }
     },
     mounted(){

@@ -10,7 +10,7 @@
     <Contact/>
     <ProjectOverlay
         v-if="projectOverlay"
-        :project="projectOverlay"
+        :projectOverlay="projectOverlay"
         v-on:close="openProjectOverlay"
     />
   </div>
@@ -53,9 +53,9 @@ export default {
         }
       })
     },
-    openProjectOverlay(project){
+    openProjectOverlay(project,pos){
         if(project){
-            this.projectOverlay = project
+            this.projectOverlay = {project,pos}
         }else{
             this.projectOverlay = null
         }
