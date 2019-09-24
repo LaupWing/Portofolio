@@ -12,12 +12,14 @@
                     :class="item"
                 >
                     <p>{{item.type}} by:</p>
-                    <button @click="openMenu(item.type)">{{item.type}}</button>
+                    <button @click="openMenu(item.type)">{{setButtonText(item.type)}}</button>
                     <ul class="choices" v-if="activeFilterSort===item.type">
                         <h2>{{item.type}}</h2>
                         <li 
                             v-for="(choice,index) in item.choices"
                             :key="index"
+                            :class="[setActiveFilterSort(item.type, choice) ?  'active': 'not-active']"
+                            @click="setFilterSort(item.type,choice)"
                         >
                             {{choice}}
                         </li>
@@ -26,7 +28,7 @@
             </nav>
             <div class="project-container">
                 <Project
-                    v-for="(project,index) in projects"
+                    v-for="(project,index) in projectsAdjustment"
                     :key="index"
                     :project="project"
                     v-on:openProjectOverlay="openProjectOverlay"
@@ -119,11 +121,13 @@ export default {
                     ]
                 }, 
                 {
-                    type:'filter'
+                    type:'filter',
+                    choices: null
                 }
             ],
             activeFilterSort: null,
-            activeSort: null
+            sort: 'Best Project First',
+            filter: 'no filter'
         }
     },
     components:{
@@ -134,9 +138,80 @@ export default {
             this.$emit('openProjectOverlay',project,pos)
         },
         openMenu(type){
-            this.activeFilterSort = type
+            if(this.activeFilterSort == type){
+                this.activeFilterSort = null
+            }else{
+                this.activeFilterSort = type
+            }
+        },
+        setButtonText(type){
+            if(this[type]){
+                return this[type]
+            }else{
+                return type
+            }
+        },
+        setFilterSort(type, choice){
+            this[type] = choice
+            this.activeFilterSort = null
+        },
+        sortName(a,b){
+            if(this.sort === 'Alphabetic A to Z'){
+                if(a.nameProject < b.nameProject) { return -1; }
+                if(a.nameProject > b.nameProject) { return 1; }
+                return 0;
+            }else{
+                if(a.nameProject > b.nameProject) { return -1; }
+                if(a.nameProject < b.nameProject) { return 1; }
+                return 0;
+            }
+        },
+        onlyUnique(value, index, self) { 
+            return self.indexOf(value) === index;
+        },
+        setFilterOptions(){
+            const array = this.projects.map(p=>p.skills).flat(Infinity).filter(this.onlyUnique)   
+            array.push('no filter')
+            return array
+        },
+        setActiveFilterSort(type, choice){
+            if(this[type]===choice)    return true
+            return false
         }
     },
+    created(){
+        this.navItems = this.navItems.map(item=>{
+            if(item.type === 'filter'){
+                item.choices = this.setFilterOptions()
+            }
+            return item
+        })
+    },
+    computed:{
+        projectsAdjustment(){
+            let projectsArray = this.projects
+            if(this.sort){
+                if(this.sort === 'Best Project First'){
+                    projectsArray = projectsArray.sort((a,b)=>a.rank-b.rank)
+                }
+                else if(this.sort === 'Worst Project First'){
+                    projectsArray = projectsArray.sort((a,b)=>b.rank-a.rank)
+                }
+                else if(this.sort === 'Alphabetic A to Z' || this.sort === 'Alphabetic Z to A'){
+                    projectsArray = projectsArray.sort(this.sortName)
+                }
+            }
+            if(this.filter){
+                if(this.filter === 'no filter'){
+                    return projectsArray
+                }
+                projectsArray = projectsArray.filter(p=>{
+                    return p.skills.includes(this.filter)
+                })
+            }
+            return projectsArray
+        },
+    }
 }
 </script>
 
@@ -161,8 +236,9 @@ export default {
     margin-top: 100px;
 }
 #Projects main nav{
+    min-width: 500px;
     display: flex;
-    width: 40%;
+    width: 70%;
     justify-content: space-between;
     margin: 20px 0;
 }
@@ -194,6 +270,7 @@ export default {
     background: white;
     position: absolute;
     border: rgba(0,0,0,.2) 1px solid;
+    min-width: 150px;
 }
 #Projects nav .type ul h2{
     z-index: 10;
@@ -212,6 +289,17 @@ export default {
     padding: 5px 10px;
     white-space: nowrap;
     border-bottom: rgba(0,0,0,.2) 1px solid;
+    transition: .25s;
+    cursor: pointer;
+}
+#Projects nav .type ul li.active{
+    background: orange;
+    color: white;
+    cursor: pointer;
+}
+#Projects nav .type ul li.not-active:hover{
+    background: black;
+    color: white;
 }
 #Projects main nav button{
     outline: none;
