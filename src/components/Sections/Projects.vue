@@ -8,12 +8,6 @@
                 v-for="(project,index) in projects"
                 :key="index"
                 :project="project"
-                :link="project.link"
-                :github="project.github"
-                :img="project.img"
-                :nameProject="project.nameProject"
-                :description="project.description"
-                :skills="project.skills"
                 v-on:openProjectOverlay="openProjectOverlay"
             />
         </main>
@@ -28,52 +22,68 @@ export default {
         return{
             projects:[
                 {
+                    rank: 2,
                     link: 'https://skills-c5bfa.firebaseapp.com/home',
                     github: 'https://github.com/LaupWing/Skills',
                     img: 'skills',
                     nameProject: 'Skills website',
-                    description: 'A website that i made where you can monitor your skills. The skills will be monitored by the amount of projects you have done. You can add skills and projects in this website. These thing will be saved in the firebase database. ',
+                    shortDescription: 'A website that i made where you can monitor your skills. The skills will be monitored by the amount of projects you have done. You can add skills and projects in this website. These thing will be saved in the firebase database. ',
+                    longDescription:'I was always obsessed with learning new stuff and upgrading my so called skills. But the problem that i always had was that it was hard to measure how good you were at a certian skill and how to effectivly upgrade that certian skill. My solution for this problem is a website where you can add your own skill and link the projects to that skill. The amounts of projects you made works as a sort of measurement and inside every skill you can add subskills which works as sections in that certain skill. Code wise this project is one big mess, but if you want to look at the feel free to click on the github link',
                     skills: ['vue', 'firebase']
                 },
                 {
+                    rank: 4,
                     link: 'https://boodschappenlijst-app.herokuapp.com/',
                     github: 'https://github.com/LaupWing/TostiBoodschappenlijst',
                     img: 'tosti',
                     nameProject: 'Tosti boodschappenlijst',
-                    description: 'A school project. This website is made for school with as goal 2 things in mind. 1 the user can make a sandwhich which adds te components to the shopping list and 2 this website needs to work without javascript. (serverside rendering)',
+                    shortDescription: 'A school project. This website is made for school with as goal 2 things in mind. 1 the user can make a sandwhich which adds te components to the shopping list and 2 this website needs to work without javascript. (serverside rendering)',
                     skills: ['node']
                 },
                 {
+                    rank: 7,
                     link: 'https://clever-heisenberg-90febc.netlify.com',
                     github: 'https://github.com/LaupWing/Css-Practice-Construction-website',
                     img: 'sphere',
                     nameProject: 'Sphere construction website',
-                    description: 'One of my earliest website. This website serves as a practice for css.',
+                    shortDescription: 'One of my earliest website. This website serves as a practice for css.',
                     skills: ['css']
                 },
                 {
+                    rank: 5,
                     link: 'https://hopeful-murdock-d6fbfb.netlify.com',
                     github: 'Jones Webshop',
                     img: 'jones',
                     nameProject: 'Jones Webshop',
-                    description: 'One of my earliest website. This website serves as a practice for css.',
+                    shortDescription: 'One of my earliest website. This website serves as a practice for css.',
                     skills: ['css']
                 },
                 {
+                    rank: 3,
                     link: 'https://spotifygame.herokuapp.com/',
                     github: 'https://github.com/LaupWing/Spotify-API',
                     img: 'spotify',
                     nameProject: 'Spotify Game',
-                    description: 'A school project. The main goal of this project was to use a api and make something cool with the receiving data. I chose for the spotify api and make a song guessing game',
+                    shortDescription: 'A school project. The main goal of this project was to use a api and make something cool with the receiving data. I chose for the spotify api and make a song guessing game',
                     skills: ['node', 'socket']
                 },
                 {
+                    rank: 1,
                     link: null,
                     github: 'https://github.com/LaupWing/Daily-Planner',
                     img: 'dailyPlanner',
                     nameProject: 'Daily Planner',
-                    description: 'A passion project. My own website where i can plan my day in. This project is still under construction',
+                    shortDescription: 'A passion project. My own website where i can plan my day in. This project is still under construction',
                     skills: ['firebase', 'vue']
+                },
+                {
+                    rank: 6,
+                    link: ' https://naughty-wescoff-3881e8.netlify.com/',
+                    github: 'https://github.com/LaupWing/Css-practice-Resident-website',
+                    img: 'hayden',
+                    nameProject: 'Hayden Architecture website',
+                    shortDescription: 'One of my earliest website. This website serves as a practice for css.',
+                    skills: ['css']
                 },
             ]
         }

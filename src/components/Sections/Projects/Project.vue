@@ -3,19 +3,19 @@
         <div class="img-container">
             <div class="see-more">
                 <p class="info">These links will open in a new tab</p>
-                <p v-if="!github && !link">No link and github available</p>
-                <i v-if="github" @click="openInNewTab(github)" class="fab fa-github"></i>
-                <i v-if="link" @click="openInNewTab(link)" class="fas fa-external-link-alt"></i>
+                <p v-if="!project.github && !project.link">No link and github available</p>
+                <i v-if="project.github" @click="openInNewTab(project.github)" class="fab fa-github"></i>
+                <i v-if="project.link" @click="openInNewTab(project.link)" class="fas fa-external-link-alt"></i>
             </div>
-            <img :src="getImgUrl(img)" alt="">
+            <img :src="getImgUrl(project.img)" alt="">
         </div>
         <div class="info">
-            <h3>{{nameProject}}</h3>
-            <p class="description">{{description}}</p>
+            <h3>{{project.nameProject}}</h3>
+            <p class="description">{{project.shortDescription}}</p>
             <div class="skills">
                 <p 
                     class="skill"
-                    v-for="(skill,index) in skills"
+                    v-for="(skill,index) in project.skills"
                     :key="index"
                     :style="setStyle(skill)"
                 >
@@ -25,7 +25,7 @@
         </div>
         <div 
             class="popup"
-            :class="{'disabled':!link, 'active':link}"
+            :class="{'disabled':!project.link, 'active':project.link}"
             @click="openProjectOverlay"
         >
             <p>watch iframe <i class="far fa-eye"></i></p>
@@ -36,7 +36,7 @@
 <script>
 export default {
     name: 'Project',
-    props:['github', 'link', 'description', 'skills', 'nameProject', 'img','project'],
+    props:['project'],
     data(){
         return{
             name: 'Project',
@@ -80,7 +80,7 @@ export default {
             win.focus();
         },
         openProjectOverlay(){
-            if(!this.link)  return
+            if(!this.project.link)  return
             this.$emit('openProjectOverlay', this.project)   
         }
     }
