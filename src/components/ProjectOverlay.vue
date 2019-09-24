@@ -160,7 +160,8 @@ export default {
     background: orange;
     font-size: 10em;
     margin: 0;
-    padding: 10px 30px;
+    padding: 0px 30px;
+    padding-top: 40px; 
     position: relative;
 }
 #Project-Overlay h3.rank::before{
