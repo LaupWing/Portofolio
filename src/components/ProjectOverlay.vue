@@ -54,16 +54,16 @@ export default {
     overflow: hidden; 
 }
 #Project-Overlay iframe { 
-    width: 133.5%; 
-    height: 133.5%;
+    width: 166.5%; 
+    height: 166.5%;
 }
 #Project-Overlay iframe {
-    -ms-zoom: 0.75;
-    -moz-transform: scale(0.75);
+    -ms-zoom: 0.6;
+    -moz-transform: scale(0.6);
     -moz-transform-origin: 0 0;
-    -o-transform: scale(0.75);
+    -o-transform: scale(0.6);
     -o-transform-origin: 0 0;
-    -webkit-transform: scale(0.75);
+    -webkit-transform: scale(0.6);
     -webkit-transform-origin: 0 0;
 }
 </style>

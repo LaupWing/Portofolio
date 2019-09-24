@@ -143,7 +143,8 @@ export default {
     width: 20px;
     height: 20px;
     margin: 5px 0;
-    background: purple;
+    background: rgba(255,255,255,.8);
+    border: 1px rgba(0,0,0,.5) solid;
     transition: 1s transform;
     position: relative;
 }
