@@ -8,11 +8,13 @@
         v-on:openProjectOverlay="openProjectOverlay"
     />
     <Contact/>
-    <ProjectOverlay
-        v-if="projectOverlay"
-        :projectOverlay="projectOverlay"
-        v-on:close="openProjectOverlay"
-    />
+    <transition name="starting-point">
+        <ProjectOverlay
+            v-if="projectOverlay"
+            :projectOverlay="projectOverlay"
+            v-on:close="openProjectOverlay"
+        />
+    </transition>
   </div>
 </template>
 <script>
@@ -39,22 +41,24 @@ export default {
   },
   methods:{
     scrollEvent(){
-      if(this.$el.scrollTop > 10){
-        this.$el.querySelector('header#Nav').classList.add('expand')
-      }else if(this.$el.scrollTop <10){
-        this.$el.querySelector('header#Nav').classList.remove('expand')
-      }
-      document.querySelectorAll('section').forEach(section=>{
-        const navHeight = this.$el.querySelector('header#Nav').offsetHeight
-        const begin = this.$el.scrollTop > (section.offsetTop-navHeight)
-        const end = this.$el.scrollTop < (section.offsetTop + section.offsetHeight)-navHeight
-        if(begin && end){
-          this.section = section.id
+        if(this.$el.scrollTop > 10){
+            this.$el.querySelector('header#Nav').classList.add('expand')
+        }else if(this.$el.scrollTop <10){
+            this.$el.querySelector('header#Nav').classList.remove('expand')
         }
-      })
+        document.querySelectorAll('section').forEach(section=>{
+            const navHeight = this.$el.querySelector('header#Nav').offsetHeight
+            const begin = this.$el.scrollTop > (section.offsetTop-navHeight)
+            const end = this.$el.scrollTop < (section.offsetTop + section.offsetHeight)-navHeight
+            if(begin && end){
+            this.section = section.id
+            }
+        })
     },
     openProjectOverlay(project,pos){
         if(project){
+            this.$el.style.setProperty('--starting-y', `${pos.y}px`)
+            this.$el.style.setProperty('--starting-x', `${pos.x}px`)
             this.projectOverlay = {project,pos}
         }else{
             this.projectOverlay = null
@@ -66,36 +70,38 @@ export default {
 <style>
 
 *{
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 :root{
-  --main-color: white;
-  --second-color: black;
-  --container-width: 900px;
+    --main-color: white;
+    --second-color: black;
+    --container-width: 900px;
 }
 body{
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
 }
 #app {
-  font-family: 'Manjari', sans-serif;
-  max-height: 100vh;
-  overflow-y: overlay;
-  scroll-behavior: smooth;
-  overflow-x: hidden;
+    font-family: 'Manjari', sans-serif;
+    max-height: 100vh;
+    overflow-y: overlay;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    --starting-y: 0px;
+    --starting-x: 0px;
 }
 section#Home,
 section#Projects,
 section#Contact{
-  width: 100vw;
-  height: 100vh; 
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    width: 100vw;
+    height: 100vh; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 a{
-  text-decoration: none;
-  color: var(--second-color);
+    text-decoration: none;
+    color: var(--second-color);
 }
 main{
     max-width: var(--container-width);
@@ -103,21 +109,38 @@ main{
 }
 
 .trade-mark{
-  border-bottom: 1px solid var(--second-color);
-  position: relative;
-  background: var(--main-color);
+    border-bottom: 1px solid var(--second-color);
+    position: relative;
+    background: var(--main-color);
 }
 .trade-mark::after{
-  content:'';
-  width: 20px;
-  height: 10px;
-  background-color: var(--second-color);
-  border-bottom-left-radius: 110px;
-  border-bottom-right-radius: 110px;
-  position: absolute;
-  border-top: 0;
-  bottom: -10px;
-  left: 50%;
-  transform: translate(-50%,0);
+    content:'';
+    width: 20px;
+    height: 10px;
+    background-color: var(--second-color);
+    border-bottom-left-radius: 110px;
+    border-bottom-right-radius: 110px;
+    position: absolute;
+    border-top: 0;
+    bottom: -10px;
+    left: 50%;
+    transform: translate(-50%,0);
+}
+.starting-point-enter-active {
+  animation: customStartingpoint 1s;
+}
+.starting-point-leave-active {
+  animation: customStartingpoint 1s reverse;
+}
+@keyframes customStartingpoint {
+    from{
+        top: var(--starting-y);
+        left: var(--starting-x);
+        transform: scale(0);
+    }to{
+        top: 0;
+        left: 0;
+        transform: scale(1);
+    }
 }
 </style>
