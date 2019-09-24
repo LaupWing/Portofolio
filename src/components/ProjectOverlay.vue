@@ -71,16 +71,6 @@ export default {
             }
         },
     },
-    mounted(){
-        // this.$el.style.top = `${this.pos.y}px`
-        // this.$el.style.left = `${this.pos.x}px`
-        // this.$el.style.transform = 'scale(0)'
-        // setTimeout(()=>{
-        //     this.$el.style.removeProperty('left')
-        //     this.$el.style.removeProperty('top')
-        //     this.$el.style.removeProperty('transform')
-        // },100)
-    }
 }
 </script>
 
@@ -159,6 +149,7 @@ export default {
     letter-spacing: 1px;
     margin: 5px;
     font-size: .8em;
+    border-radius: 5px;
 }
 #Project-Overlay .info h2{
     margin: 0;

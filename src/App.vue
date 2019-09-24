@@ -65,6 +65,13 @@ export default {
         }
     }
   },
+  mounted(){
+    const heightNav = document.querySelector('header#Nav').offsetHeight
+    this.$el.querySelectorAll('section .title').forEach(title=>{
+        console.log(title)
+        title.style.top = `${heightNav}px`
+    })
+  }
 }
 </script>
 <style>
