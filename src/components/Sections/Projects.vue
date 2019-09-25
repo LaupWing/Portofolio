@@ -62,6 +62,7 @@ export default {
                     img: 'tosti',
                     nameProject: 'Tosti boodschappenlijst',
                     shortDescription: 'A school project. This website is made for school with as goal 2 things in mind. 1 the user can make a sandwhich which adds te components to the shopping list and 2 this website needs to work without javascript. (serverside rendering)',
+                    longDescription:'',
                     skills: ['node']
                 },
                 {
@@ -71,6 +72,7 @@ export default {
                     img: 'sphere',
                     nameProject: 'Sphere construction website',
                     shortDescription: 'One of my earliest website. This website serves as a practice for css.',
+                    longDescription:'',
                     skills: ['css']
                 },
                 {
@@ -98,6 +100,7 @@ export default {
                     img: 'dailyPlanner',
                     nameProject: 'Daily Planner',
                     shortDescription: 'A passion project. My own website where i can plan my day in. This project is still under construction',
+                    longDescription:'',
                     skills: ['firebase', 'vue']
                 },
                 {
@@ -107,6 +110,7 @@ export default {
                     img: 'hayden',
                     nameProject: 'Hayden Architecture website',
                     shortDescription: 'One of my earliest website. This website serves as a practice for css.',
+                    longDescription: '',
                     skills: ['css']
                 },
             ],
@@ -321,27 +325,23 @@ export default {
     padding-bottom: 20px;
     max-width: 100%;
 }
-
 /* width */
 #Projects .project-container::-webkit-scrollbar {
     width: 10px;
     border-radius: 20px;
 }
-
 /* Track */
 #Projects .project-container::-webkit-scrollbar-track {
     background: #f1f1f1; 
     border-radius: 20px;
     width: 5px;
 }
- 
 /* Handle */
 #Projects .project-container::-webkit-scrollbar-thumb {
     background: rgba(0,0,0,.1); 
     border-radius: 20px;
     width: 5px;
 }
-
 /* Handle on hover */
 #Projects .project-container::-webkit-scrollbar-thumb:hover {
     background: rgba(0,0,0,.2); 
