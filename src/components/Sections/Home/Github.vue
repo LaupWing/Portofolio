@@ -113,10 +113,14 @@ export default {
                 .doc('commits')
                 .get()
                 .then(doc=>{
-                    this.commitsMethod = `The data is received by my own database from the date ${doc.data().createdAt}`
+                    this.commitsMethod = `The data is received by my own database from the date ${this.formatDate(doc.data().createdAt.seconds)}`
                     this.commits = doc.data().allCommits
                     this.linkCommitsToDate()
                 })
+        },
+        formatDate(sec){
+            const date = new Date(sec)
+            return date
         },
         getCommit(repo){
             const url = `https://api.github.com/repos/LaupWing/${repo}/commits?per_page=500`
