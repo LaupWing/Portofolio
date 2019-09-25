@@ -62,7 +62,7 @@ export default {
                     img: 'tosti',
                     nameProject: 'Tosti boodschappenlijst',
                     shortDescription: 'A school project. This website is made for school with as goal 2 things in mind. 1 the user can make a sandwhich which adds te components to the shopping list and 2 this website needs to work without javascript. (serverside rendering)',
-                    longDescription:'',
+                    longDescription:'This is a school project, where i have to make a website which is operatable without javascript support. This was lots of fun to make because i have tingle alot with node and express. Also i have found lots of javascript replacements. For example i can hide and show stuff with only checkboxes instead of using javascript. I have learned to do things without clientside javascript and that has boost my node skills and especially css',
                     skills: ['node']
                 },
                 {
@@ -72,7 +72,7 @@ export default {
                     img: 'sphere',
                     nameProject: 'Sphere construction website',
                     shortDescription: 'One of my earliest website. This website serves as a practice for css.',
-                    longDescription:'',
+                    longDescription:'This is one of my many first websites where i pick up a website from wix, squarspace or other website builders platform. The main focus of this website is to upgrade my css knowledge and html structure. But besides the css and html experience i gained, i also gained lots of styling experience and UX design from copying websites',
                     skills: ['css']
                 },
                 {
@@ -82,6 +82,7 @@ export default {
                     img: 'jones',
                     nameProject: 'Jones Webshop',
                     shortDescription: 'One of my earliest website. This website serves as a practice for css.',
+                    longDescription: 'This is one of my many first websites where i pick up a website from wix, squarspace or other website builders platform. The main focus of this website is to upgrade my css knowledge and html structure. But besides the css and html experience i gained, i also gained lots of styling experience and UX design from copying websites',
                     skills: ['css']
                 },
                 {
@@ -91,6 +92,7 @@ export default {
                     img: 'spotify',
                     nameProject: 'Spotify Game',
                     shortDescription: 'A school project. The main goal of this project was to use a api and make something cool with the receiving data. I chose for the spotify api and make a song guessing game',
+                    longDescription:'This was a school project where i needed to use a api to make a cool website. I decided to make a game with the Spotify Api. This game is a simple guess the song game. You can play this game with multiple players. The reason why this project is on number 3 is that because it has a lot of javascript incoorperated into this project. I used some node and sockets for this, but a lot of the code lives in the client side javascript. Feel free to click on the link icon and play this game.',
                     skills: ['node', 'socket']
                 },
                 {
@@ -100,7 +102,7 @@ export default {
                     img: 'dailyPlanner',
                     nameProject: 'Daily Planner',
                     shortDescription: 'A passion project. My own website where i can plan my day in. This project is still under construction',
-                    longDescription:'',
+                    longDescription:'This is until now my favorite and best personal project yet. The reason why is that this website solves my bigges problem and main source of stress and that is time managing. Most of the planner tools doesnt meet my wishes so i decided to make my own daily planner. Another reason why i love this project is that has a lot of functionality where i can display all my skills in the field of Vue and Javascript. I want to do lots of things in my day and by making this website i hopefully can help other people who has the same problem as me. and help them boost their productivity',
                     skills: ['firebase', 'vue']
                 },
                 {
@@ -110,7 +112,7 @@ export default {
                     img: 'hayden',
                     nameProject: 'Hayden Architecture website',
                     shortDescription: 'One of my earliest website. This website serves as a practice for css.',
-                    longDescription: '',
+                    longDescription: 'This is one of my many first websites where i pick up a website from wix, squarspace or other website builders platform. The main focus of this website is to upgrade my css knowledge and html structure. But besides the css and html experience i gained, i also gained lots of styling experience and UX design from copying websites',
                     skills: ['css']
                 },
             ],
