@@ -131,11 +131,13 @@ export default {
         timeline(){
             const date = new Date()
             const day = date.getDate()
+            console.log(day)
             const month = date.getMonth()+1
+            console.log(this.getLastDayOfMonth(month))
             const year= date.getFullYear()
             for(let i=0; i<10; i++){
                 this.timespan.push({
-                    day: day - i !== 0 ? day - i : i === 1 ? this.getLastDayOfMonth(month-1) : (this.getLastDayOfMonth(month-1) - i) + 1,
+                    day: day - i > 0 ? day - i : (day-i) > 0 ? (this.getLastDayOfMonth(month) - i) : this.getLastDayOfMonth(month),
                     year: month === 1 && day === 1 ? year-1 : year, // this formule isnt correct yet maybe in the future i will change it NOTE
                     month: day - i > 0 ? month : month === 1 ? 12 : month -1  
                 })
