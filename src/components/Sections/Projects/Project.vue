@@ -60,6 +60,10 @@ export default {
                 {
                     skill:'socket',
                     color: '#010101'
+                },
+                {
+                    skill:'react',
+                    color: '#5ED4F4'
                 }
             ]
         }

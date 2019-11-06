@@ -115,6 +115,16 @@ export default {
                     longDescription: 'This is one of my many first websites where i pick up a website from wix, squarspace or other website builders platform. The main focus of this website is to upgrade my css knowledge and html structure. But besides the css and html experience i gained, i also gained lots of styling experience and UX design from copying websites',
                     skills: ['css']
                 },
+                {
+                    rank: 8,
+                    link: ' https://hungry-mahavira-d1c413.netlify.com/',
+                    github: 'https://github.com/LaupWing/react-type-tester',
+                    img: 'react-type-test',
+                    nameProject: 'React Type test',
+                    shortDescription: 'My first react app',
+                    longDescription: 'My first react web app. This is a typing test website to discover how may words you can type in a minute. Here i use redux react to make this website. I have run into many problems while making this app. Mainly in relation with the redux and state managing.',
+                    skills: ['react']
+                },
             ],
             navItems: [
                 {
